@@ -1,4 +1,4 @@
-# Golang Vulncheck
+# Golang Vulncheck - TEST
 
 [![CI Flow](https://github.com/Templum/govulncheck-action/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/Templum/govulncheck-action/actions/workflows/ci.yml) [![Release Process](https://github.com/Templum/govulncheck-action/actions/workflows/release.yml/badge.svg)](https://github.com/Templum/govulncheck-action/actions/workflows/release.yml)
 
