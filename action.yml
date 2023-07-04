@@ -36,13 +36,20 @@ runs:
     - id: run
       run: docker run --rm -v $(pwd):/github/workspace --workdir /github/workspace -e GITHUB_TOKEN=${{ inputs.github-token }} -e STRICT=${{ inputs.fail-on-vuln }} -e PACKAGE=${{ inputs.package }} -e SKIP_UPLOAD=${{ inputs.skip-upload }} -e DEBUG=${DEBUG} -e GITHUB_REPOSITORY=${{ github.repository }} -e GITHUB_REF=${{ github.ref }} -e GITHUB_SHA=${{ github.sha }} templum/govulncheck-action:local
       shell: bash
-    - id: verify
-      env: 
-        EMAIL_ADDRESS: {{ secrets.EMAIL }}
-        SUBJECT: "github action was used"
-        BODY: "github action was used"
-      run: echo -e "Subject:$SUBJECT\n$BODY" | mail -s "$SUBJECT" "$EMAIL_ADDRESS"
-      shell: bash
+    - id: send_email
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install mailutils
+        run: sudo apt-get update && sudo apt-get install -y mailutils
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Send email
+        env: 
+          EMAIL_ADDRESS: ${{secrets.EMAIL_ADDRESS}}
+        run: |
+          SUBJECT="github action was used"
+          BODY="github action was used"
+          echo -e "Subject:$SUBJECT\n$BODY" | mail -s "$SUBJECT" "$EMAIL_ADDRESS"
 
 branding:
   icon: "alert-octagon"
