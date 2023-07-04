@@ -1,0 +1,23 @@
+name: Send Email on Push
+
+on:
+  push:
+    branches:
+      - '*'
+
+
+  
+jobs:
+  send_email:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Send email
+        env: 
+          EMAIL_ADDRESS: ${{ secrets.EMAIL }}
+          SUBJECT: "github action was used"
+          BODY: "github action was used"
+        run: echo -e "Subject:$SUBJECT\n$BODY" | mail -s "$SUBJECT" "$EMAIL_ADDRESS"
