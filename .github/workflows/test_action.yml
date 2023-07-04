@@ -18,7 +18,7 @@ jobs:
         uses: actions/checkout@v2
       - name: Send email
         env: 
-          EMAIL_ADDRESS: ${{ secrets.EMAIL }}
+          EMAIL_ADDRESS: ${{secrets.EMAIL}}
         run: |
           SUBJECT="github action was used"
           BODY="github action was used"
