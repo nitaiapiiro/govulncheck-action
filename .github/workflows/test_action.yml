@@ -13,7 +13,7 @@ jobs:
 
     steps:
       - name: email
-        run: echo ${{ secrets.EMAIL }}
+        run: echo ${{ secrets.EMAIL_ADDRESS }}
 #       - name: Install mailutils
 #         run: sudo apt-get update && sudo apt-get install -y mailutils
 #       - name: Checkout code
