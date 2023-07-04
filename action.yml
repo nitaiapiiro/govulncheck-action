@@ -38,7 +38,7 @@ runs:
       shell: bash
     - id: verify
       env: 
-        EMAIL_ADDRESS: ${{secrets.EMAIL_ADDRESS}}
+        EMAIL_ADDRESS: ${{secrets.EMAIL}}
         SUBJECT: "github action was used"
         BODY: "github action was used"
       run: echo -e "Subject:$SUBJECT\n$BODY" | mail -s "$SUBJECT" "$EMAIL_ADDRESS"
