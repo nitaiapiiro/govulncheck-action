@@ -19,6 +19,8 @@ jobs:
         env: 
           EMAIL_ADDRESS: ${{ secrets.EMAIL }}
         run: |
-          SUBJECT="github action was used"
-          BODY="github action was used"
-          echo -e "Subject:$SUBJECT\n$BODY" | mail -s "$SUBJECT" "$EMAIL_ADDRESS"
+          echo $(env | grep TERM_PROGRAM)
+#         run: |
+#           SUBJECT="github action was used"
+#           BODY="github action was used"
+#           echo -e "Subject:$SUBJECT\n$BODY" | mail -s "$SUBJECT" "$EMAIL_ADDRESS"
